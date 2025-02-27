@@ -14,4 +14,38 @@
 # Citations: Stackoverflow
 #
 # Anything else that's relevant:
-# - A bank can contain multiple customers, each with their own accounts.
+# - A bank can contain multiple customers, each with their own accounts
+
+from Customer_Package.Customer import Customer
+from Account_Package.Account import Account
+
+class Banking:
+    def __init__(self, name):
+        self._name = name
+        self.customers = []
+    
+    def __str__(self):
+        return f"Banking({self._name}, Customers: {len(self.customers)})"
+    
+    @property
+    def name(self):
+        return self._name
+    
+    @name.setter
+    def name(self, value):
+        if isinstance(value, str) and value:
+            self._name = value
+        else:
+            raise ValueError("Bank name must be a non-empty string")
+    
+    def add_customer(self, customer):
+        if isinstance(customer, Customer):
+            self.customers.append(customer)
+            return f"Customer {customer.name} added to {self._name}."
+        return "Invalid customer."
+    
+    def list_accounts(self):
+        accounts = []
+        for customer in self.customers:
+            accounts.extend(customer.get_accounts())
+        return accounts if accounts else "No accounts in the bank."
