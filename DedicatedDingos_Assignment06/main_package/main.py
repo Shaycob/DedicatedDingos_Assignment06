@@ -22,17 +22,17 @@ from Account_Package.Account import Account
 
 def main():
     # Creating a bank
-    Banking = Banking("Global Bank")
+    bank = Banking("Global Bank")
     
     # Creating a customer
     customer = Customer("John Doe", "C123")
-    print(Banking.add_customer(customer))
+    print(bank.add_customer(customer))
     
     # Customer opens an account
     print(customer.open_account("A1001", 500.00))
     
     # Viewing bank accounts
-    print("Bank Accounts:", Banking.list_accounts())
+    print("Bank Accounts:", bank.list_accounts())
     
 if __name__ == "__main__":
     main()
