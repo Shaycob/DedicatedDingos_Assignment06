@@ -11,7 +11,7 @@
 # Citations: Stackoverflow
 # Anything else that's relevant:Each customer can have multiple accounts.
 
-from Account import Account
+from Account_Package.Account import Account
 
 class Customer:
     def __init__(self, name, customer_id):
