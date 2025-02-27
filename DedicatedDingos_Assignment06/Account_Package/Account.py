@@ -15,3 +15,36 @@
 #
 # Anything else that's relevant:
 # - This module is a core part of the banking system and interacts with customers.
+
+class Account:
+    def __init__(self, account_number, owner, balance=0.0):
+        self.account_number = account_number
+        self.owner = owner
+        self._balance = balance
+    
+    def __str__(self):
+        return f"Account({self.account_number}, Owner: {self.owner}, Balance: ${self._balance:.2f})"
+    
+    @property
+    def balance(self):
+        return self._balance
+    
+    @balance.setter
+    def balance(self, value):
+        if value >= 0:
+            self._balance = value
+        else:
+            raise ValueError("Balance cannot be negative")
+    
+    def deposit(self, amount):
+        if amount > 0:
+            self._balance += amount
+            return f"Deposited ${amount:.2f}. New Balance: ${self._balance:.2f}"
+        return "Deposit amount must be positive."
+    
+    def withdraw(self, amount):
+        if 0 < amount <= self._balance:
+            self._balance -= amount
+            return f"Withdrew ${amount:.2f}. Remaining Balance: ${self._balance:.2f}"
+        return "Insufficient balance or invalid amount."
+
